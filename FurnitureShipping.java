@@ -25,7 +25,7 @@ public class FurnitureShipping {
         System.out.println("\nTotal express shipping cost: $" + expressShipping.getTotalCost());
         
         // Distance-based shipping (300 miles)
-        System.out.println("\n====================== Distance-Based Shipping ======================");
+        System.out.println("\n============================ Distance-Based Shipping ============================");
         ShippingCostVisitor distanceShipping = new DistanceBasedShippingVisitor(300);
         for (Furniture item : shoppingCart) {
             item.accept(distanceShipping);
