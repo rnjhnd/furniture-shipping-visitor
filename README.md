@@ -9,4 +9,4 @@ Implement a visitor design pattern approach. You must show the different element
 
 
 ## UML Class Diagram:
-![UML Class Diagram](https://github.com/user-attachments/assets/cb353bf6-0766-4db5-a9b2-d7ed75335f63)
+![UML Class Diagram](https://github.com/user-attachments/assets/5f9371bc-9d9d-4408-a292-f5af8d17a28c)
