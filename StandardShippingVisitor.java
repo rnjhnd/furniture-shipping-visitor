@@ -12,7 +12,7 @@ class StandardShippingVisitor implements ShippingCostVisitor {
     public void visit(Table table) {
         double cost = table.getWeight() * 0.7;
         if (table.isAssembled()) {
-            cost += 25.0; // Additional cost for assembled tables
+            cost += 25.0;
         }
         totalCost += cost;
         System.out.println("Standard shipping cost for " + table.getName() + ": $" + cost);
@@ -22,7 +22,7 @@ class StandardShippingVisitor implements ShippingCostVisitor {
     public void visit(Sofa sofa) {
         double cost = sofa.getVolume() * 0.05 + sofa.getWeight() * 0.6;
         if (sofa.getMaterial().equalsIgnoreCase("leather")) {
-            cost += 50.0; // Premium for leather sofas
+            cost += 50.0;
         }
         totalCost += cost;
         System.out.println("Standard shipping cost for " + sofa.getName() + ": $" + cost);
