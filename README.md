@@ -1,4 +1,4 @@
-# Visitor Design Pattern
+# E-Commerce Shipping Cost Engine
 
 You are a software developer working on an e-commerce platform that sells various types of furniture (chairs, tables, sofas, etc.). You want to implement a functionality that calculates the shipping cost based on the furniture type and size.
 
@@ -6,7 +6,6 @@ Each furniture type might have its own unique shipping cost calculation logic. F
 
 Implement a visitor design pattern approach. You must show the different elements of visitor design in your solution.  **DO NOT USE ABSTRACT CLASSES.** You are free to name your interfaces and concrete classes. Have a client code that will test your program.
 <br><br>
-
 
 ## UML Class Diagram:
 ![UML Class Diagram](https://github.com/user-attachments/assets/225b2165-85b6-43e4-8442-3c9ffc470971)
