@@ -32,17 +32,17 @@ The project follows the Visitor Design Pattern with the following components:
 
 ```
 furniture-shipping-visitor/
-├── Furniture.java                    # Furniture interface
-├── Chair.java                        # Chair implementation
-├── Table.java                        # Table implementation
-├── Sofa.java                         # Sofa implementation
-├── ShippingCostVisitor.java          # Visitor interface
-├── StandardShippingVisitor.java      # Standard shipping logic
-├── ExpressShippingVisitor.java       # Express shipping logic
-├── DistanceBasedShippingVisitor.java # Distance-based shipping logic
-├── FurnitureShipping.java            # Main client code
-├── README.md                         # This file
-└── UML Class Diagram.png             # Architecture diagram
+├── src/
+│   ├── Furniture.java                        # Furniture interface
+│   ├── Chair.java                            # Chair implementation
+│   ├── Table.java                            # Table implementation
+│   ├── Sofa.java                             # Sofa implementation
+│   ├── ShippingCostVisitor.java              # Visitor interface
+│   ├── StandardShippingVisitor.java          # Standard shipping logic
+│   ├── ExpressShippingVisitor.java           # Express shipping logic
+│   ├── DistanceBasedShippingVisitor.java     # Distance-based shipping logic
+│   ├── FurnitureShipping.java                # Main client code
+└── README.md                                 # Project documentation
 ```
 
 ## 🚀 Usage
@@ -164,7 +164,7 @@ Feel free to contribute to this project by:
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
