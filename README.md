@@ -152,7 +152,7 @@ Potential improvements could include:
 ## 📊 UML Class Diagram
 <img width="2700" height="1060" alt="UML Class Diagram" src="https://github.com/user-attachments/assets/a81def47-124e-4ce7-a47c-93a34882a2c9" />
 
-The UML diagram shows the relationships between the Furniture interface, concrete furniture classes, and the visitor implementations.
+The diagram shows the relationships between the Furniture interface, concrete furniture classes, and the visitor implementations.
 
 ## 🤝 Contributing
 
