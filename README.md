@@ -1,32 +1,49 @@
-# Furniture Shipping Cost Calculator
+# Furniture Shipping Visitor
 
-A Java implementation of the Visitor Design Pattern for calculating shipping costs of different furniture types in an e-commerce platform.
+A Java implementation of the **Visitor Design Pattern** for calculating shipping costs of different furniture types in an e-commerce platform. This project demonstrates how to use visitor objects to perform operations on furniture items without tightly coupling the shipping logic to the furniture classes.
 
 ## 📋 Overview
 
-This project demonstrates how to use the Visitor Pattern to calculate shipping costs for various furniture items (chairs, tables, sofas) without tightly coupling the shipping logic to the furniture classes. The solution provides three different shipping strategies:
-
-- **Standard Shipping**: Basic cost calculation based on weight and volume
-- **Express Shipping**: Premium shipping with higher rates
-- **Distance-Based Shipping**: Cost calculation based on distance and furniture characteristics
+The Furniture Shipping Visitor allows you to calculate shipping costs for various furniture items (chairs, tables, and sofas) using different shipping strategies. Instead of embedding shipping logic within each furniture class, the system uses visitor objects to perform cost calculations, making the code more maintainable and extensible.
 
 ## 🏗️ Architecture
 
-The project follows the Visitor Design Pattern with the following components:
+This project implements the **Visitor Design Pattern** with the following components:
 
-### Core Interfaces
-- `Furniture`: Defines the accept method for visitor pattern
-- `ShippingCostVisitor`: Defines visit methods for each furniture type
+- **Furniture Interface**: Defines the contract for all furniture types with an accept method
+- **Concrete Furniture Classes**: Chair, Table, and Sofa implementations
+- **ShippingCostVisitor Interface**: Defines visit methods for each furniture type
+- **Concrete Visitor Classes**: Standard, Express, and Distance-based shipping strategies
+- **Main Application**: Demonstrates the visitor pattern in action
 
-### Furniture Types
-- `Chair`: Lightweight furniture with basic shipping requirements
-- `Table`: Medium-weight furniture with assembly considerations
-- `Sofa`: Heavy furniture with material-specific handling
+### Design Pattern Benefits
 
-### Shipping Visitors
-- `StandardShippingVisitor`: Basic shipping cost calculation
-- `ExpressShippingVisitor`: Premium shipping with higher rates
-- `DistanceBasedShippingVisitor`: Distance-based cost calculation
+- **Separation of Concerns**: Shipping logic is separated from furniture classes
+- **Extensibility**: Easy to add new shipping strategies without modifying furniture classes
+- **Type Safety**: Compile-time type checking for different furniture types
+- **Single Responsibility**: Each visitor handles one specific shipping strategy
+
+## 📊 UML Class Diagram
+
+![image](https://github.com/user-attachments/assets/a81def47-124e-4ce7-a47c-93a34882a2c9)
+
+The following diagram illustrates:
+- The architecture of the Furniture Shipping Visitor
+- Relationships between the core components:
+  - The `Furniture` interface
+  - Concrete implementations: `Chair`, `Table`, `Sofa`
+  - The `ShippingCostVisitor` interface
+  - Concrete visitor implementations: `StandardShippingVisitor`, `ExpressShippingVisitor`, `DistanceBasedShippingVisitor`
+  - The main application class
+- How the Visitor design pattern is applied in this project
+
+## 🚀 Features
+
+- **Multiple Furniture Types**: Support for chairs, tables, and sofas
+- **Flexible Shipping Strategies**: Standard, Express, and Distance-based shipping
+- **Type-Safe Operations**: Strong typing for each furniture type
+- **Extensible Design**: Easy to add new furniture types or shipping strategies
+- **Clean Architecture**: Well-structured, maintainable code
 
 ## 📁 Project Structure
 
@@ -41,23 +58,62 @@ furniture-shipping-visitor/
 │   ├── StandardShippingVisitor.java          # Standard shipping logic
 │   ├── ExpressShippingVisitor.java           # Express shipping logic
 │   ├── DistanceBasedShippingVisitor.java     # Distance-based shipping logic
-│   ├── FurnitureShipping.java                # Main client code
+│   └── FurnitureShipping.java                # Main application demo
 └── README.md                                 # Project documentation
 ```
 
-## 🚀 Usage
+## 🛠️ Installation & Setup
 
-### Running the Application
+### Prerequisites
 
-```bash
-# Compile all Java files
-javac *.java
+- Java Development Kit (JDK) 8 or higher
+- Any Java IDE (IntelliJ IDEA, Eclipse, VS Code, etc.)
 
-# Run the main application
-java FurnitureShipping
+### Getting Started
+
+1. **Clone or download** the project files
+2. **Navigate** to the project directory
+3. **Compile** the Java files:
+   ```bash
+   javac src/*.java
+   ```
+4. **Run** the application:
+   ```bash
+   java -cp src FurnitureShipping
+   ```
+
+## 📖 Usage
+
+### Basic Usage
+
+The main application (`FurnitureShipping.java`) demonstrates how to use the visitor pattern:
+
+```java
+// Create furniture items
+Furniture chair = new Chair("Ergonomic Office Chair", 15.5, 0.5);
+Furniture table = new Table("Dining Table", 45.0, 2.0, true);
+Furniture sofa = new Sofa("Sectional Sofa", 85.0, 4.5, "leather");
+
+Furniture[] shoppingCart = {chair, table, sofa};
+
+// Calculate standard shipping costs
+ShippingCostVisitor standardShipping = new StandardShippingVisitor();
+for (Furniture item : shoppingCart) {
+    item.accept(standardShipping);
+}
+System.out.println("Total standard shipping cost: $" + standardShipping.getTotalCost());
+
+// Calculate express shipping costs
+ShippingCostVisitor expressShipping = new ExpressShippingVisitor();
+for (Furniture item : shoppingCart) {
+    item.accept(expressShipping);
+}
+System.out.println("Total express shipping cost: $" + expressShipping.getTotalCost());
 ```
 
-### Example Output
+### Expected Output
+
+When you run the application, you'll see:
 
 ```
 ====================== Standard Shipping ======================
@@ -82,53 +138,59 @@ Distance-based shipping cost for Sectional Sofa: $254.5
 Total distance-based shipping cost: $413.0
 ```
 
-## 💡 Design Pattern Benefits
+## 🔧 Extending the Project
 
-### Visitor Pattern Advantages
-1. **Separation of Concerns**: Shipping logic is separated from furniture classes
-2. **Extensibility**: Easy to add new shipping strategies without modifying furniture classes
-3. **Type Safety**: Compile-time type checking for different furniture types
-4. **Single Responsibility**: Each visitor handles one specific shipping strategy
+### Adding New Furniture Types
 
-### Key Features
-- **No Abstract Classes**: Uses interfaces as required
-- **Type-Specific Logic**: Each furniture type can have custom shipping calculations
-- **Flexible Pricing**: Different pricing strategies for different shipping methods
-- **Easy Testing**: Each component can be tested independently
+To add a new furniture type (e.g., `Bed`):
 
-## 🔧 Implementation Details
+1. **Create** a new class implementing the `Furniture` interface
+2. **Add** a visit method to the `ShippingCostVisitor` interface
+3. **Implement** the visit method in all concrete visitor classes
 
-### Furniture Interface
+Example:
 ```java
-interface Furniture {
-    void accept(ShippingCostVisitor visitor);
-    String getName();
-    double getWeight();
-    double getVolume();
+public class Bed implements Furniture {
+    private String name;
+    private double weight;
+    private double volume;
+    private String size; // twin, queen, king
+    
+    // Implementation details...
 }
 ```
 
-### Visitor Interface
-```java
-interface ShippingCostVisitor {
-    void visit(Chair chair);
-    void visit(Table table);
-    void visit(Sofa sofa);
-    double getTotalCost();
-}
-```
+### Adding New Shipping Strategies
 
-### Shipping Cost Calculations
+To add a new shipping strategy (e.g., `OvernightShippingVisitor`):
 
-#### Standard Shipping
+1. **Create** a new class implementing the `ShippingCostVisitor` interface
+2. **Implement** visit methods for each furniture type
+3. **Add** the new strategy to the main application
+
+## 🎯 Design Patterns Used
+
+### Visitor Pattern
+- **Purpose**: Perform operations on objects with different types without modifying their classes
+- **Benefits**: Separates algorithms from object structure and allows easy addition of new operations
+- **Implementation**: Each furniture class has an `accept()` method that calls the appropriate `visit()` method
+
+### Strategy Pattern (Implicit)
+- **Purpose**: Encapsulate different shipping algorithms
+- **Benefits**: Allows switching between different shipping strategies at runtime
+- **Implementation**: Different visitor classes represent different shipping strategies
+
+## 💡 Shipping Cost Calculations
+
+### Standard Shipping
 - **Chair**: Base cost ($15) + weight × $0.5
 - **Table**: Weight × $0.7 + assembly fee ($25 if assembled)
 - **Sofa**: Volume × $0.05 + weight × $0.6 + material fee ($50 for leather)
 
-#### Express Shipping
+### Express Shipping
 - 1.5x multiplier on standard shipping costs
 
-#### Distance-Based Shipping
+### Distance-Based Shipping
 - 2x multiplier on standard shipping costs (for 300-mile distance)
 
 ## 🎯 Use Cases
@@ -148,11 +210,6 @@ Potential improvements could include:
 - More sophisticated pricing algorithms
 - Geographic pricing zones
 - Seasonal pricing adjustments
-
-## 📊 UML Class Diagram
-<img width="2700" height="1060" alt="UML Class Diagram" src="https://github.com/user-attachments/assets/a81def47-124e-4ce7-a47c-93a34882a2c9" />
-
-The diagram shows the relationships between the Furniture interface, concrete furniture classes, and the visitor implementations.
 
 ## 🤝 Contributing
 
