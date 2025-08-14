@@ -1,4 +1,4 @@
-# Furniture Shipping Visitor
+# Furniture Shipping Cost Calculator
 
 A Java implementation of the **Visitor Design Pattern** for calculating shipping costs of different furniture types in an e-commerce platform. This project demonstrates how to use visitor objects to perform operations on furniture items without tightly coupling the shipping logic to the furniture classes.
 
